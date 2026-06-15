@@ -5,6 +5,7 @@ import { SignupPage } from "@/pages/signup";
 import { ProcessingPage } from "@/pages/processing";
 import { DashboardPage } from "@/pages/dashboard";
 import { LandlordStubPage } from "@/pages/landlord-stub";
+import { IntegrationPage } from "@/pages/integration";
 
 export function App() {
   return (
@@ -17,6 +18,7 @@ export function App() {
           <Route path="/onboarding/processing" element={<ProcessingPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/landlord-stub" element={<LandlordStubPage />} />
+          <Route path="/integration" element={<IntegrationPage />} />
         </Routes>
       </main>
     </BrowserRouter>

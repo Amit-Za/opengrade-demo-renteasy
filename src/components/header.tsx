@@ -22,6 +22,7 @@ export function Header() {
         <nav className="hidden gap-6 text-sm text-slate-600 sm:flex">
           <Link to="/" className="hover:text-slate-900">Home</Link>
           <Link to="/landlord-stub" className="hover:text-slate-900">For landlords</Link>
+          <Link to="/integration" className="hover:text-slate-900">Integration</Link>
         </nav>
       </div>
     </header>
