@@ -42,8 +42,13 @@ export function LandingPage() {
           </div>
           <div className="hidden lg:block">
             {/* Decorative card */}
-            <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-              <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-blue-100 via-blue-50 to-white" />
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1693209079362-521e1792aeb9?w=800&q=80&auto=format&fit=crop"
+                alt="Tel Aviv apartment building, Florentin neighborhood"
+                loading="lazy"
+                className="aspect-[4/3] w-full rounded-xl object-cover"
+              />
               <div className="mt-4 flex items-center justify-between">
                 <div>
                   <div className="text-sm font-semibold text-slate-900">2BR Tel Aviv, Florentin</div>
