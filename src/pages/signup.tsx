@@ -18,15 +18,20 @@ export function SignupPage() {
     if (!name.trim()) return setError("Full name is required.");
     if (!EMAIL_RE.test(email)) return setError("Please enter a valid email.");
     setSubmitting(true);
-    // Submit wiring lands in Task 7. For now, navigate with a fake check id so the
-    // route exists end-to-end.
-    localStorage.setItem("renteasy.user", JSON.stringify({ name }));
-    navigate(
-      `/onboarding/processing?id=stub&token=stub`,
-    );
-    // Silence the unused-import warning until Task 7 swaps this in.
+    try {
+      const { startCheck } = await import("@/lib/api");
+      const { checkId, consentUrl } = await startCheck({ name, email });
+      localStorage.setItem("renteasy.user", JSON.stringify({ name }));
+      const params = new URLSearchParams({ id: checkId, url: consentUrl });
+      navigate(`/onboarding/processing?${params.toString()}`);
+    } catch (e: unknown) {
+      setError(
+        e instanceof Error ? e.message : "Couldn't start verification. Try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
     void phone;
-    void submitting;
   };
 
   return (
