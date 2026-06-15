@@ -13,7 +13,7 @@ export type CheckStatusResponse = {
     | "EXPIRED";
   score: number | null;
   band: "GREEN" | "YELLOW" | "RED" | null;
-  factors: Array<{ label: string; weight: number }> | null;
+  factors: Array<{ label: string; score: number }> | null;
 };
 
 export type ApiError = {

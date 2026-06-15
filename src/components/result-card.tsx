@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { OpenGradeBadge } from "@/components/og-badge";
 
 type Band = "GREEN" | "YELLOW" | "RED" | null;
-type Factor = { label: string; weight: number };
+type Factor = { label: string; score: number };
 
 type Props = {
   score: number;
@@ -79,13 +79,13 @@ export function ResultCard({ score, band, factors }: Props) {
               <div className="mb-1.5 flex items-center justify-between text-xs">
                 <span className="text-slate-600">{f.label}</span>
                 <span className="font-medium text-slate-900 tabular-nums">
-                  {Math.round(f.weight)}
+                  {Math.round(f.score)}
                 </span>
               </div>
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
                 <div
                   className="h-full rounded-full bg-blue-500"
-                  style={{ width: `${Math.max(0, Math.min(100, f.weight))}%` }}
+                  style={{ width: `${Math.max(0, Math.min(100, f.score))}%` }}
                 />
               </div>
             </div>

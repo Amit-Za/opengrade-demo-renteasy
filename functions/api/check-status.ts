@@ -6,7 +6,7 @@ interface Env {
 const DEFAULT_BASE = "https://opengrade.cs.colman.ac.il/api/v1";
 const UUID_RE = /^[0-9a-f-]{8,}$/i;
 
-type UpstreamFactor = { label?: string; weight?: number } & Record<string, unknown>;
+type UpstreamFactor = { label?: string; score?: number } & Record<string, unknown>;
 type UpstreamParticipant = {
   score: number | null;
   trafficLight: "GREEN" | "YELLOW" | "RED" | null;
@@ -19,13 +19,13 @@ type UpstreamResponse = {
 
 function projectFactors(
   raw: UpstreamParticipant["factors"],
-): Array<{ label: string; weight: number }> | null {
+): Array<{ label: string; score: number }> | null {
   if (!raw) return null;
   if (Array.isArray(raw)) {
     return raw
       .map((f) => ({
         label: typeof f.label === "string" ? f.label : "",
-        weight: typeof f.weight === "number" ? f.weight : 0,
+        score: typeof f.score === "number" ? f.score : 0,
       }))
       .filter((f) => f.label !== "");
   }
@@ -33,9 +33,9 @@ function projectFactors(
   return Object.entries(raw)
     .map(([label, v]) => ({
       label,
-      weight: typeof v === "number" ? v : Number(v) || 0,
+      score: typeof v === "number" ? v : Number(v) || 0,
     }))
-    .filter((f) => !Number.isNaN(f.weight));
+    .filter((f) => !Number.isNaN(f.score));
 }
 
 export const onRequestGet = async ({
